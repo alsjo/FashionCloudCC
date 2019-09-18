@@ -14,6 +14,7 @@
 		FA5D471E233225A100A740AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5D471C233225A100A740AA /* LaunchScreen.storyboard */; };
 		FA5D4729233225A100A740AA /* FashionCloudCCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5D4728233225A100A740AA /* FashionCloudCCTests.swift */; };
 		FA5D4734233225A100A740AA /* FashionCloudCCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5D4733233225A100A740AA /* FashionCloudCCUITests.swift */; };
+		FA5D4746233228A000A740AA /* TagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5D4745233228A000A740AA /* TagsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		FA5D472F233225A100A740AA /* FashionCloudCCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FashionCloudCCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5D4733233225A100A740AA /* FashionCloudCCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FashionCloudCCUITests.swift; sourceTree = "<group>"; };
 		FA5D4735233225A100A740AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA5D4745233228A000A740AA /* TagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				FA5D4713233225A000A740AA /* AppDelegate.swift */,
 				FA5D4715233225A000A740AA /* ViewController.swift */,
 				FA5D4717233225A000A740AA /* Main.storyboard */,
+				FA5D4745233228A000A740AA /* TagsViewController.swift */,
 				FA5D471A233225A100A740AA /* Assets.xcassets */,
 				FA5D471C233225A100A740AA /* LaunchScreen.storyboard */,
 				FA5D471F233225A100A740AA /* Info.plist */,
@@ -258,6 +261,7 @@
 			files = (
 				FA5D4716233225A000A740AA /* ViewController.swift in Sources */,
 				FA5D4714233225A000A740AA /* AppDelegate.swift in Sources */,
+				FA5D4746233228A000A740AA /* TagsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
