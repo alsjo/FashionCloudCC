@@ -105,7 +105,7 @@ class TagsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.getMappingSet { (mappingSet, error) in
             if(mappingSet == nil)
             {
-                print("Unexpected error: \(error?.localizedDescription).")
+                print("Unexpected error")
             }
             else
             {
@@ -119,7 +119,7 @@ class TagsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.getMapping(param: (self.mappingSet![0] as MappingSetElement).uuid, completion: { (mapping, error) in
                     if(mapping == nil)
                     {
-                        print("Unexpected error: \(error?.localizedDescription).")
+                        print("Unexpected error")
                     }
                     else
                     {
@@ -133,7 +133,7 @@ class TagsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.getMapping(param: (self.mappingSet![1] as MappingSetElement).uuid, completion: { (mapping, error) in
                     if(mapping == nil)
                     {
-                        print("Unexpected error: \(error?.localizedDescription).")
+                        print("Unexpected error")
                     }
                     else
                     {
@@ -143,7 +143,7 @@ class TagsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.getMapping(param: (self.mappingSet![2] as MappingSetElement).uuid, completion: { (mapping, error) in
                     if(mapping == nil)
                     {
-                        print("Unexpected error: \(error?.localizedDescription).")
+                        print("Unexpected error")
                     }
                     else
                     {
@@ -173,7 +173,7 @@ class TagsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.getMappingSet { (mappingSet, error) in
             if(mappingSet == nil)
             {
-                print("Unexpected error: \(error?.localizedDescription).")
+                print("Unexpected error")
                 DispatchQueue.main.async {
                     self.stopIndicators()
                 }
@@ -194,7 +194,7 @@ class TagsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.getMapping(param: (self.mappingSet![0] as MappingSetElement).uuid, completion: { (mapping, error) in
                         if(mapping == nil)
                         {
-                            print("Unexpected error: \(error?.localizedDescription).")
+                            print("Unexpected error")
                             DispatchQueue.main.async {
                                 self.stopIndicators()
                             }
@@ -213,7 +213,7 @@ class TagsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.getMapping(param: (self.mappingSet![1] as MappingSetElement).uuid, completion: { (mapping, error) in
                         if(mapping == nil)
                         {
-                            print("Unexpected error: \(error?.localizedDescription).")
+                            print("Unexpected error")
                             DispatchQueue.main.async {
                                 self.stopIndicators()
                             }
@@ -232,7 +232,7 @@ class TagsViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.getMapping(param: (self.mappingSet![2] as MappingSetElement).uuid, completion: { (mapping, error) in
                         if(mapping == nil)
                         {
-                            print("Unexpected error: \(error?.localizedDescription).")
+                            print("Unexpected error")
                             DispatchQueue.main.async {
                                 self.stopIndicators()
                             }
@@ -633,6 +633,15 @@ extension URLSession {
             guard let data = data, error == nil else {
                 completionHandler(nil, response, error)
                 return
+            }
+            if let response = response as? HTTPURLResponse {
+                switch response.statusCode {
+                case 500...599:
+                    let ErrorResponseString = String(data: data, encoding: .utf8)
+                    print("Network Error: \(ErrorResponseString ?? "unknown")")
+                default:
+                    break
+                }
             }
             completionHandler(try? newJSONDecoder().decode(T.self, from: data), response, nil)
         }

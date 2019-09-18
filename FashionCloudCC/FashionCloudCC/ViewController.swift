@@ -103,7 +103,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.getArticles { (articles, error) in
             if(articles == nil)
             {
-                print("Unexpected error: \(error?.localizedDescription).")
+                print("Unexpected error")
             }
             else
             {
@@ -122,7 +122,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.getArticles { (articles, error) in
             if(articles == nil)
             {
-                print("Unexpected error: \(error?.localizedDescription).")
+                print("Unexpected error")
                 DispatchQueue.main.async {
                     self.stopIndicators()
                 }
@@ -303,6 +303,15 @@ extension URLSession {
             guard let data = data, error == nil else {
                 completionHandler(nil, response, error)
                 return
+            }
+            if let response = response as? HTTPURLResponse {
+                switch response.statusCode {
+                case 500...599:
+                    let ErrorResponseString = String(data: data, encoding: .utf8)
+                    print("Network Error: \(ErrorResponseString ?? "unknown")")
+                default:
+                    break
+                }
             }
             completionHandler(try? newJSONDecoder().decode(T.self, from: data), response, nil)
         }
